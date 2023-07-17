@@ -1,0 +1,43 @@
+img {
+  display: inline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.loader,
+.error {
+  text-align: center;
+}
+
+.cat-info {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  max-width: 1000px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.image {
+  max-width: calc((100% - 20px) / 2);
+  height: 100%;
+}
+
+.temperament-title {
+  font-weight: 700;
+}
+
+.is-hidden {
+  display: none;
+}
