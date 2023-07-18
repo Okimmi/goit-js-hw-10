@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <select id="single" class="breed-select"></select>
-    <p class="loader">Loading data, please wait...</p>
-    <p class="error">Oops! Something went wrong! Try reloading the page!</p>
+    <div class="select-wrapper is-hidden">
+      <select id="single" class="breed-select"></select>
+    </div>
+    <div class="loader-wrapper">
+      <span class="loader"></span>
+    </div>
     <div class="cat-info"></div>
 
     <script src="index.js" type="module"></script>

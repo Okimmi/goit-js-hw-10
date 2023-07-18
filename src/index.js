@@ -1,31 +1,36 @@
 import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+const selectWrapperRef = document.querySelector('.select-wrapper');
 const selectRef = document.querySelector('.breed-select');
 const cardRef = document.querySelector('div.cat-info');
 const loaderRef = document.querySelector('.loader');
-const errorRef = document.querySelector('.error');
-
-loaderRef.classList.add('is-hidden');
-errorRef.classList.add('is-hidden');
 
 fetchBreeds()
-  .then(breeds => renderBreeds(breeds))
-  .catch(() => errorRef.classList.remove('is-hidden'));
+  .then(breeds => {
+    renderBreeds(breeds);
+    selectWrapperRef.classList.remove('is-hidden');
+    loaderRef.classList.add('is-hidden');
+  })
+  .catch(() =>
+    Notify.failure('Oops! Something went wrong! Try to reload the page!')
+  );
 
 selectRef.addEventListener('change', event => {
   cardRef.innerHTML = '';
   loaderRef.classList.remove('is-hidden');
-  selectRef.classList.add('is-hidden');
+  selectWrapperRef.classList.add('is-hidden');
   fetchCatByBreed(event.target.value)
     .then(breed => {
+      selectWrapperRef.classList.remove('is-hidden');
       loaderRef.classList.add('is-hidden');
-      selectRef.classList.remove('is-hidden');
       renderCard(breed[0]);
     })
     .catch(() => {
       loaderRef.classList.add('is-hidden');
-      errorRef.classList.remove('is-hidden');
+      Notify.failure('Oops! Something went wrong! Try to reload the page!');
     });
 });
 
